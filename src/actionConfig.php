@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 use corbomite\migrations\actions\MigrationUpAction;
 use corbomite\migrations\actions\CreateSampleConfig;
+use corbomite\migrations\actions\MigrationDownAction;
 use corbomite\migrations\actions\CreateMigrationAction;
 use corbomite\migrations\actions\MigrationStatusAction;
 
 return [
-    'migration' => [
-        'description' => 'Corbomite Migrations Commands',
+    'migrate' => [
+        'description' => 'Corbomite Migration Commands',
         'commands' => [
             'create-sample-config' => [
                 'description' => 'Creates phinx.php config file with sample values',
@@ -25,6 +26,10 @@ return [
             'up' => [
                 'description' => 'Runs migrations that need to run',
                 'class' => MigrationUpAction::class,
+            ],
+            'down' => [
+                'description' => 'Rolls back previous migration or to specified target',
+                'class' => MigrationDownAction::class,
             ],
         ],
     ],
