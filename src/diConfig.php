@@ -9,6 +9,7 @@ use corbomite\migrations\services\PreFlightService;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use corbomite\migrations\actions\CreateSampleConfig;
 use corbomite\migrations\actions\CreateMigrationAction;
+use corbomite\migrations\actions\MigrationStatusAction;
 use corbomite\migrations\utilities\CaseConversionUtility;
 
 return [
@@ -23,6 +24,14 @@ return [
             Di::get(PreFlightService::class),
             Di::get(CliQuestionService::class),
             new CaseConversionUtility(),
+            new PhinxApplication(),
+            new ArrayInputFactory(),
+            new ConsoleOutput()
+        );
+    },
+    MigrationStatusAction::class => function () {
+        return new MigrationStatusAction(
+            Di::get(PreFlightService::class),
             new PhinxApplication(),
             new ArrayInputFactory(),
             new ConsoleOutput()

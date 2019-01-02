@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use corbomite\migrations\actions\CreateSampleConfig;
 use corbomite\migrations\actions\CreateMigrationAction;
+use corbomite\migrations\actions\MigrationStatusAction;
 
 return [
     'migration' => [
@@ -15,6 +16,10 @@ return [
             'create' => [
                 'description' => 'Creates a migration',
                 'class' => CreateMigrationAction::class,
+            ],
+            'status' => [
+                'description' => 'Lists migration status',
+                'class' => MigrationStatusAction::class,
             ],
         ],
     ],
