@@ -7,11 +7,13 @@ use Phinx\Console\PhinxApplication;
 use corbomite\cli\models\CliArgumentsModel;
 use corbomite\cli\factories\ArrayInputFactory;
 use corbomite\cli\services\CliQuestionService;
+use corbomite\migrations\services\PreFlightService;
 use Symfony\Component\Console\Output\OutputInterface;
 use corbomite\migrations\utilities\CaseConversionUtility;
 
 class CreateMigrationAction
 {
+    private $preFlightService;
     private $cliQuestionService;
     private $caseConversionUtility;
     private $phinxApplication;
@@ -19,12 +21,14 @@ class CreateMigrationAction
     private $consoleOutput;
 
     public function __construct(
+        PreFlightService $preFlightService,
         CliQuestionService $cliQuestionService,
         CaseConversionUtility $caseConversionUtility,
         PhinxApplication $phinxApplication,
         ArrayInputFactory $arrayInputFactory,
         OutputInterface $consoleOutput
     ) {
+        $this->preFlightService = $preFlightService;
         $this->cliQuestionService = $cliQuestionService;
         $this->caseConversionUtility = $caseConversionUtility;
         $this->phinxApplication = $phinxApplication;
@@ -34,6 +38,8 @@ class CreateMigrationAction
 
     public function __invoke(CliArgumentsModel $argModel): ?int
     {
+        ($this->preFlightService)();
+
         if (! $name = $argModel->getArgumentByIndex(2)) {
             $name = $this->cliQuestionService->ask(
                 '<fg=cyan>Provide a migration name: </>'
