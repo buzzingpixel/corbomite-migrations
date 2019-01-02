@@ -6,6 +6,7 @@ use Phinx\Console\PhinxApplication;
 use corbomite\cli\factories\ArrayInputFactory;
 use corbomite\cli\services\CliQuestionService;
 use corbomite\migrations\services\PreFlightService;
+use corbomite\migrations\actions\MigrationUpAction;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use corbomite\migrations\actions\CreateSampleConfig;
 use corbomite\migrations\actions\CreateMigrationAction;
@@ -31,6 +32,14 @@ return [
     },
     MigrationStatusAction::class => function () {
         return new MigrationStatusAction(
+            Di::get(PreFlightService::class),
+            new PhinxApplication(),
+            new ArrayInputFactory(),
+            new ConsoleOutput()
+        );
+    },
+    MigrationUpAction::class => function () {
+        return new MigrationUpAction(
             Di::get(PreFlightService::class),
             new PhinxApplication(),
             new ArrayInputFactory(),

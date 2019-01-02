@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use corbomite\migrations\actions\MigrationUpAction;
 use corbomite\migrations\actions\CreateSampleConfig;
 use corbomite\migrations\actions\CreateMigrationAction;
 use corbomite\migrations\actions\MigrationStatusAction;
@@ -20,6 +21,10 @@ return [
             'status' => [
                 'description' => 'Lists migration status',
                 'class' => MigrationStatusAction::class,
+            ],
+            'up' => [
+                'description' => 'Runs migrations that need to run',
+                'class' => MigrationUpAction::class,
             ],
         ],
     ],
