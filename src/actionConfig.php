@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-use corbomite\migrations\actions\MigrationUpAction;
+use corbomite\migrations\actions\MigrateUpAction;
+use corbomite\migrations\actions\MigrateDownAction;
 use corbomite\migrations\actions\CreateSampleConfig;
-use corbomite\migrations\actions\MigrationDownAction;
+use corbomite\migrations\actions\MigrateStatusAction;
 use corbomite\migrations\actions\CreateMigrationAction;
-use corbomite\migrations\actions\MigrationStatusAction;
 
 return [
     'migrate' => [
@@ -21,15 +21,15 @@ return [
             ],
             'status' => [
                 'description' => 'Lists migration status',
-                'class' => MigrationStatusAction::class,
+                'class' => MigrateStatusAction::class,
             ],
             'up' => [
                 'description' => 'Runs migrations that need to run',
-                'class' => MigrationUpAction::class,
+                'class' => MigrateUpAction::class,
             ],
             'down' => [
                 'description' => 'Rolls back previous migration or to specified target',
-                'class' => MigrationDownAction::class,
+                'class' => MigrateDownAction::class,
             ],
         ],
     ],

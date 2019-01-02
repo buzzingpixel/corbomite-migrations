@@ -8,7 +8,7 @@ use corbomite\cli\factories\ArrayInputFactory;
 use corbomite\migrations\services\PreFlightService;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class MigrationStatusAction
+class MigrateStatusAction
 {
     private $preFlightService;
     private $phinxApplication;

@@ -5,13 +5,13 @@ use corbomite\di\Di;
 use Phinx\Console\PhinxApplication;
 use corbomite\cli\factories\ArrayInputFactory;
 use corbomite\cli\services\CliQuestionService;
+use corbomite\migrations\actions\MigrateUpAction;
 use corbomite\migrations\services\PreFlightService;
-use corbomite\migrations\actions\MigrationUpAction;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use corbomite\migrations\actions\MigrateDownAction;
 use corbomite\migrations\actions\CreateSampleConfig;
-use corbomite\migrations\actions\MigrationDownAction;
+use corbomite\migrations\actions\MigrateStatusAction;
 use corbomite\migrations\actions\CreateMigrationAction;
-use corbomite\migrations\actions\MigrationStatusAction;
 use corbomite\migrations\utilities\CaseConversionUtility;
 
 return [
@@ -31,24 +31,24 @@ return [
             new ConsoleOutput()
         );
     },
-    MigrationStatusAction::class => function () {
-        return new MigrationStatusAction(
+    MigrateStatusAction::class => function () {
+        return new MigrateStatusAction(
             Di::get(PreFlightService::class),
             new PhinxApplication(),
             new ArrayInputFactory(),
             new ConsoleOutput()
         );
     },
-    MigrationUpAction::class => function () {
-        return new MigrationUpAction(
+    MigrateUpAction::class => function () {
+        return new MigrateUpAction(
             Di::get(PreFlightService::class),
             new PhinxApplication(),
             new ArrayInputFactory(),
             new ConsoleOutput()
         );
     },
-    MigrationDownAction::class => function () {
-        return new MigrationDownAction(
+    MigrateDownAction::class => function () {
+        return new MigrateDownAction(
             Di::get(PreFlightService::class),
             new PhinxApplication(),
             new ArrayInputFactory(),
