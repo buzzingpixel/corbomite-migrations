@@ -2,8 +2,6 @@
 <?php
 declare(strict_types=1);
 
-// phpcs:ignoreFile
-
 use corbomite\di\Di;
 use corbomite\cli\Kernel;
 
