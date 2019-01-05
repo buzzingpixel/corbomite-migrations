@@ -17,12 +17,12 @@ class PreFlightService
 
     public function __invoke(): void
     {
-        if (file_exists(APP_BASE_PATH . '/phinx.php')) {
-            return;
-        }
-
         if (! defined('APP_BASE_PATH')) {
             throw new LogicException('APP_BASE_PATH must be defined');
+        }
+
+        if (file_exists(APP_BASE_PATH . '/phinx.php')) {
+            return;
         }
 
         defined('ENTRY_POINT') || define('ENTRY_POINT', 'app');
