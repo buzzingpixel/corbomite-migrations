@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39b6f60ffca00e97ebdb056f562caaa2",
+    "content-hash": "5feaa3387ded1551c56d050edf9826d8",
     "packages": [
         {
             "name": "buzzingpixel/corbomite-cli",
@@ -93,16 +93,16 @@
         },
         {
             "name": "cakephp/cache",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cache.git",
-                "reference": "46fc6789956a086d728b5c35af13c912b62cf543"
+                "reference": "173502b262b62612763297b9b3a73a5a88492425"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cache/zipball/46fc6789956a086d728b5c35af13c912b62cf543",
-                "reference": "46fc6789956a086d728b5c35af13c912b62cf543",
+                "url": "https://api.github.com/repos/cakephp/cache/zipball/173502b262b62612763297b9b3a73a5a88492425",
+                "reference": "173502b262b62612763297b9b3a73a5a88492425",
                 "shasum": ""
             },
             "require": {
@@ -132,11 +132,11 @@
                 "caching",
                 "cakephp"
             ],
-            "time": "2018-12-09T01:18:53+00:00"
+            "time": "2018-12-27T20:11:28+00:00"
         },
         {
             "name": "cakephp/collection",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/collection.git",
@@ -182,7 +182,7 @@
         },
         {
             "name": "cakephp/core",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
@@ -231,26 +231,24 @@
         },
         {
             "name": "cakephp/database",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/database.git",
-                "reference": "b5649125528f9230d81c7b870edecfbe19ecac21"
+                "reference": "8fc79e5b65c250c0a82e2c20425ff65e28076bd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/database/zipball/b5649125528f9230d81c7b870edecfbe19ecac21",
-                "reference": "b5649125528f9230d81c7b870edecfbe19ecac21",
+                "url": "https://api.github.com/repos/cakephp/database/zipball/8fc79e5b65c250c0a82e2c20425ff65e28076bd8",
+                "reference": "8fc79e5b65c250c0a82e2c20425ff65e28076bd8",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cache": "^3.6.0",
                 "cakephp/core": "^3.6.0",
                 "cakephp/datasource": "^3.6.0",
+                "cakephp/log": "^3.6.0",
                 "php": ">=5.6.0"
-            },
-            "suggest": {
-                "cakephp/log": "Require this if you want to use the built-in query logger"
             },
             "type": "library",
             "autoload": {
@@ -277,11 +275,11 @@
                 "database abstraction",
                 "pdo"
             ],
-            "time": "2018-12-14T12:11:25+00:00"
+            "time": "2019-01-02T15:03:36+00:00"
         },
         {
             "name": "cakephp/datasource",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/datasource.git",
@@ -330,8 +328,53 @@
             "time": "2018-12-13T23:20:56+00:00"
         },
         {
+            "name": "cakephp/log",
+            "version": "3.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/log.git",
+                "reference": "45682ac6707d6d341dae6470fe356fe60325022e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/log/zipball/45682ac6707d6d341dae6470fe356fe60325022e",
+                "reference": "45682ac6707d6d341dae6470fe356fe60325022e",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/core": "^3.6.0",
+                "php": ">=5.6.0",
+                "psr/log": "^1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cake\\Log\\": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/log/graphs/contributors"
+                }
+            ],
+            "description": "CakePHP logging library with support for multiple different streams",
+            "homepage": "https://cakephp.org",
+            "keywords": [
+                "Streams",
+                "cakephp",
+                "log",
+                "logging"
+            ],
+            "time": "2018-04-24T11:15:51+00:00"
+        },
+        {
             "name": "cakephp/utility",
-            "version": "3.7.0",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
@@ -2548,16 +2591,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e"
+                "reference": "cfd5dc225767ca154853752abc93aeec040fcf36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
-                "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/cfd5dc225767ca154853752abc93aeec040fcf36",
+                "reference": "cfd5dc225767ca154853752abc93aeec040fcf36",
                 "shasum": ""
             },
             "require": {
@@ -2594,7 +2637,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2018-07-29T20:33:41+00:00"
+            "time": "2018-10-30T17:29:25+00:00"
         }
     ],
     "aliases": [],
