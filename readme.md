@@ -6,27 +6,49 @@ Provides a light wrapper around [Phinx](https://phinx.org/) to make it available
 
 ## Usage
 
-Please note `APP_BASE_PATH` must be defined as a constant.
+### APP_BASE_PATH constant
+
+You can define `APP_BASE_PATH` as a constant to give Corbomite DB knowledge about the app's base path, otherwise Crobomite DB will try to figure it out automatically.
+
+### Environment variables
+
+#### Required environment variables
+
+- `DB_DATABASE`
+- `DB_USER`
+- `DB_PASSWORD`
+
+#### Optional environment variables
+
+- `PHINX_MIGRATION_TABLE` (default: `migrations`)
+- `PHINX_ADAPTER` (default: `mysql`)
+- `DB_HOST` (default: `localhost`)
+- `DB_PORT` (default: `3306`)
+- `DB_CHARSET` (default: `utf8mb4`)
+- `DB_COLLATION` (default: `utf8mb4_general_ci`)
+- `PHINX_VERSION_ORDER` (default: `creation`)
+
+### CLI commands
 
 Once you've composer required into your Corbomite project, there will be some new commands available on the command line.
 
-### `migrate/create-sample-config`
+#### `migrate/create-sample-config`
 
 Creates a `phinx.php` config file with sample values at the root of your project.
 
-### `migrate/create`
+#### `migrate/create`
 
 Creates a migration file in the directory specified in your `phinx.php` config file.
 
-### `migrate/status`
+#### `migrate/status`
 
 Shows the status of migrations.
 
-### `migrate/up`
+#### `migrate/up`
 
 Runs any migrations that have not yet been run.
 
-### `migrate/down`
+#### `migrate/down`
 
 Rolls back the previous migration or to the specified target.
 

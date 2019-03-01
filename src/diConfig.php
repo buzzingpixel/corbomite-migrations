@@ -63,7 +63,7 @@ return [
             new ConsoleOutput()
         );
     },
-    MigrateStatusAction::class => function (ContainerInterface $di) {
+    MigrateStatusAction::class => static function (ContainerInterface $di) {
         return new MigrateStatusAction(
             $di->get(PreFlightService::class),
             new PhinxApplication(),
@@ -71,7 +71,7 @@ return [
             new ConsoleOutput()
         );
     },
-    MigrateUpAction::class => function (ContainerInterface $di) {
+    MigrateUpAction::class => static function (ContainerInterface $di) {
         return new MigrateUpAction(
             $di->get(PreFlightService::class),
             new PhinxApplication(),
@@ -79,7 +79,7 @@ return [
             new ConsoleOutput()
         );
     },
-    MigrateDownAction::class => function (ContainerInterface $di) {
+    MigrateDownAction::class => static function (ContainerInterface $di) {
         return new MigrateDownAction(
             $di->get(PreFlightService::class),
             new PhinxApplication(),
