@@ -26,6 +26,11 @@
             "corbomite\\migrations\\": "src"
         }
     },
+    "config": {
+        "bin-compat": "full",
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
     "extra": {
         "diConfigFilePath": "src/diConfig.php",
         "cliActionConfigFilePath": "src/actionConfig.php"
