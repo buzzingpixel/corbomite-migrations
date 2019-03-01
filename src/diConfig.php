@@ -8,6 +8,8 @@ declare(strict_types=1);
  */
 
 use corbomite\di\Di;
+use corbomite\cli\ExitStatement;
+use Composer\Autoload\ClassLoader;
 use Phinx\Console\PhinxApplication;
 use corbomite\cli\factories\ArrayInputFactory;
 use corbomite\cli\services\CliQuestionService;
@@ -22,10 +24,34 @@ use corbomite\migrations\utilities\CaseConversionUtility;
 
 return [
     PreFlightService::class => function () {
-        return new PreFlightService(new ConsoleOutput());
+        if (defined('APP_BASE_PATH')) {
+            $appBasePath = APP_BASE_PATH;
+        } else {
+            $reflection = new ReflectionClass(ClassLoader::class);
+
+            $appBasePath = dirname($reflection->getFileName(), 3);
+        }
+
+        return new PreFlightService(
+            $appBasePath,
+            new ExitStatement(),
+            new ConsoleOutput()
+        );
     },
     CreateSampleConfig::class => function () {
-        return new CreateSampleConfig(__DIR__, new ConsoleOutput());
+        if (defined('APP_BASE_PATH')) {
+            $appBasePath = APP_BASE_PATH;
+        } else {
+            $reflection = new ReflectionClass(ClassLoader::class);
+
+            $appBasePath = dirname($reflection->getFileName(), 3);
+        }
+
+        return new CreateSampleConfig(
+            $appBasePath,
+            new ConsoleOutput(),
+            __DIR__
+        );
     },
     CreateMigrationAction::class => function () {
         return new CreateMigrationAction(

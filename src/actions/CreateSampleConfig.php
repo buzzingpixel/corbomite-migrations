@@ -9,29 +9,27 @@ declare(strict_types=1);
 
 namespace corbomite\migrations\actions;
 
-use LogicException;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class CreateSampleConfig
 {
-    private $migrationsSrcDir;
     private $output;
+    private $appBasePath;
+    private $migrationsSrcDir;
 
     public function __construct(
-        string $migrationsSrcDir,
-        OutputInterface $output
+        string $appBasePath,
+        OutputInterface $output,
+        string $migrationsSrcDir
     ) {
-        $this->migrationsSrcDir = $migrationsSrcDir;
         $this->output = $output;
+        $this->appBasePath = $appBasePath;
+        $this->migrationsSrcDir = $migrationsSrcDir;
     }
 
     public function __invoke()
     {
-        if (! defined('APP_BASE_PATH')) {
-            throw new LogicException('APP_BASE_PATH must be defined');
-        }
-
-        if (file_exists(APP_BASE_PATH . '/phinx.php')) {
+        if (file_exists($this->appBasePath . '/phinx.php')) {
             $this->output->writeln(
                 '<fg=red>phinx.php config file already exists. Please ' .
                 'remove or rename that file before generating new sample file </>'
@@ -42,11 +40,11 @@ class CreateSampleConfig
 
         copy(
             $this->migrationsSrcDir . '/phinx.php.example',
-            APP_BASE_PATH . '/phinx.php'
+            $this->appBasePath . '/phinx.php'
         );
 
         $this->output->writeln(
-            '<fg=green>phinx.php config file has been placed in APP_BASE_PATH. ' .
+            '<fg=green>phinx.php config file has been placed in '. $this->appBasePath . ' '.
             'Look over the values there and edit as needed</>'
         );
     }
