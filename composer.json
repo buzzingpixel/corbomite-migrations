@@ -11,8 +11,10 @@
     ],
     "require": {
         "php": ">=7.1",
-        "buzzingpixel/corbomite-di": "^1.0",
         "buzzingpixel/corbomite-cli": "^1.0.3",
+        "buzzingpixel/corbomite-di": "^1.0",
+        "codedungeon/phpunit-result-printer": "^0.26.1",
+        "phpunit/phpunit": "^8.0",
         "robmorgan/phinx": "^0.10.6"
     },
     "require-dev": {
@@ -24,6 +26,11 @@
     "autoload": {
         "psr-4": {
             "corbomite\\migrations\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "corbomite\\tests\\": "tests/"
         }
     },
     "config": {
