@@ -18,6 +18,10 @@ class PhpFunctions
 
     public function copy(string $source, string $dest, $context = null): bool
     {
-        return copy($source, $dest, $context);
+        if ($context !== null) {
+            return copy($source, $dest, $context);
+        }
+
+        return copy($source, $dest);
     }
 }
