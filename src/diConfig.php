@@ -15,6 +15,7 @@ use corbomite\migrations\PhpFunctions;
 use corbomite\cli\factories\ArrayInputFactory;
 use corbomite\cli\services\CliQuestionService;
 use corbomite\migrations\actions\MigrateUpAction;
+use corbomite\migrations\actions\CreateSeedAction;
 use corbomite\migrations\services\PreFlightService;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use corbomite\migrations\actions\MigrateDownAction;
@@ -58,6 +59,16 @@ return [
     },
     CreateMigrationAction::class => static function (ContainerInterface $di) {
         return new CreateMigrationAction(
+            $di->get(PreFlightService::class),
+            $di->get(CliQuestionService::class),
+            new CaseConversionUtility(),
+            new PhinxApplication(),
+            new ArrayInputFactory(),
+            new ConsoleOutput()
+        );
+    },
+    CreateSeedAction::class => static function (ContainerInterface $di) {
+        return new CreateSeedAction(
             $di->get(PreFlightService::class),
             $di->get(CliQuestionService::class),
             new CaseConversionUtility(),

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace corbomite\tests\actions\CreateMigrationAction;
+namespace corbomite\tests\actions\CreateSeedAction;
 
 use PHPUnit\Framework\TestCase;
 use Phinx\Console\PhinxApplication;
@@ -9,9 +9,9 @@ use corbomite\cli\models\CliArgumentsModel;
 use corbomite\cli\services\CliQuestionService;
 use corbomite\cli\factories\ArrayInputFactory;
 use Symfony\Component\Console\Input\ArrayInput;
+use corbomite\migrations\actions\CreateSeedAction;
 use corbomite\migrations\services\PreFlightService;
 use Symfony\Component\Console\Output\OutputInterface;
-use corbomite\migrations\actions\CreateMigrationAction;
 use corbomite\migrations\utilities\CaseConversionUtility;
 
 class NameArgNotProvidedTest extends TestCase
@@ -35,7 +35,7 @@ class NameArgNotProvidedTest extends TestCase
         $cliQuestionService->expects(self::once())
             ->method('ask')
             ->with(
-                self::equalTo('<fg=cyan>Provide a migration name: </>')
+                self::equalTo('<fg=cyan>Provide a seed name: </>')
             )
             ->willReturn('askedQuestionName');
 
@@ -61,13 +61,13 @@ class NameArgNotProvidedTest extends TestCase
         $arrayInputFactory->expects(self::once())
             ->method('make')
             ->with(self::equalTo([
-                'create',
+                'seed:create',
                 'name' => 'testOutputName'
             ]))
             ->willReturn($arrayInput);
 
         /** @noinspection PhpParamsInspection */
-        $obj = new CreateMigrationAction(
+        $obj = new CreateSeedAction(
             $preFlightService,
             $cliQuestionService,
             $caseConversionUtility,

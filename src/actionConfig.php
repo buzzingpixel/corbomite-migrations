@@ -8,6 +8,7 @@ declare(strict_types=1);
  */
 
 use corbomite\migrations\actions\MigrateUpAction;
+use corbomite\migrations\actions\CreateSeedAction;
 use corbomite\migrations\actions\MigrateDownAction;
 use corbomite\migrations\actions\CreateSampleConfig;
 use corbomite\migrations\actions\MigrateStatusAction;
@@ -36,6 +37,15 @@ return [
             'down' => [
                 'description' => 'Rolls back previous migration or to specified target',
                 'class' => MigrateDownAction::class,
+            ],
+        ],
+    ],
+    'seed' => [
+        'description' => 'Corbomite Seed Commands',
+        'commands' => [
+            'create' => [
+                'description' => 'Creates a seeder',
+                'class' => CreateSeedAction::class,
             ],
         ],
     ],

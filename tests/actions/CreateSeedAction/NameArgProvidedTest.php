@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace corbomite\tests\actions\CreateMigrationAction;
+namespace corbomite\tests\actions\CreateSeedAction;
 
 use PHPUnit\Framework\TestCase;
 use Phinx\Console\PhinxApplication;
@@ -9,12 +9,12 @@ use corbomite\cli\models\CliArgumentsModel;
 use corbomite\cli\services\CliQuestionService;
 use corbomite\cli\factories\ArrayInputFactory;
 use Symfony\Component\Console\Input\ArrayInput;
+use corbomite\migrations\actions\CreateSeedAction;
 use corbomite\migrations\services\PreFlightService;
 use Symfony\Component\Console\Output\OutputInterface;
-use corbomite\migrations\actions\CreateMigrationAction;
 use corbomite\migrations\utilities\CaseConversionUtility;
 
-class NameArgNotProvidedTest extends TestCase
+class NameArgProvidedTest extends TestCase
 {
     /**
      * @throws \Throwable
@@ -32,18 +32,13 @@ class NameArgNotProvidedTest extends TestCase
 
         $cliQuestionService = $this->createMock(CliQuestionService::class);
 
-        $cliQuestionService->expects(self::once())
-            ->method('ask')
-            ->with(
-                self::equalTo('<fg=cyan>Provide a migration name: </>')
-            )
-            ->willReturn('askedQuestionName');
+        $cliQuestionService->expects(self::never())->method(self::anything());
 
         $caseConversionUtility = $this->createMock(CaseConversionUtility::class);
 
         $caseConversionUtility->expects(self::once())
             ->method('convertStringToPascale')
-            ->with(self::equalTo('askedQuestionName'))
+            ->with(self::equalTo('testInputName'))
             ->willReturn('testOutputName');
 
         $phinxApplication = $this->createMock(PhinxApplication::class);
@@ -61,13 +56,13 @@ class NameArgNotProvidedTest extends TestCase
         $arrayInputFactory->expects(self::once())
             ->method('make')
             ->with(self::equalTo([
-                'create',
+                'seed:create',
                 'name' => 'testOutputName'
             ]))
             ->willReturn($arrayInput);
 
         /** @noinspection PhpParamsInspection */
-        $obj = new CreateMigrationAction(
+        $obj = new CreateSeedAction(
             $preFlightService,
             $cliQuestionService,
             $caseConversionUtility,
@@ -81,7 +76,7 @@ class NameArgNotProvidedTest extends TestCase
         $argModel->expects(self::once())
             ->method('getArgumentByIndex')
             ->with(self::equalTo(2))
-            ->willReturn(null);
+            ->willReturn('testInputName');
 
         /** @noinspection PhpParamsInspection */
         self::assertEquals(1, $obj($argModel));
