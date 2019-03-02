@@ -52,7 +52,8 @@ return [
         return new CreateSampleConfig(
             $appBasePath,
             new ConsoleOutput(),
-            __DIR__
+            __DIR__,
+            new PhpFunctions()
         );
     },
     CreateMigrationAction::class => static function (ContainerInterface $di) {

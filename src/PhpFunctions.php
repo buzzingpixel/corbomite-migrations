@@ -15,4 +15,9 @@ class PhpFunctions
     {
         return file_exists($filename);
     }
+
+    public function copy(string $source, string $dest, $context = null): bool
+    {
+        return copy($source, $dest, $context);
+    }
 }
