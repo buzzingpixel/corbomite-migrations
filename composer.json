@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "buzzingpixel/corbomite-cli": "^1.0.3",
         "buzzingpixel/corbomite-di": "^1.0",
         "codedungeon/phpunit-result-printer": "^0.26.1",
