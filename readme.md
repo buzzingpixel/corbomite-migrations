@@ -42,6 +42,8 @@ Creates a `phinx.php` config file with sample values at the root of your project
 
 Creates a migration file in the directory specified in your `phinx.php` config file.
 
+You can also provide an argument to name the migration and skip the question asking what the name of the migration should be.
+
 #### `migrate/status`
 
 Shows the status of migrations.
@@ -53,6 +55,16 @@ Runs any migrations that have not yet been run.
 #### `migrate/down`
 
 Rolls back the previous migration or to the specified target.
+
+#### `seed/create`
+
+Creates a seeder class.
+
+You can also provide an argument to name the seeder class and skip the question asking what the name of the seeder should be.
+
+#### `seed/run`
+
+Runs seeders. If no argument is provided, all seeders will be run. Provide the class name to run a single seeder
 
 ## License
 
