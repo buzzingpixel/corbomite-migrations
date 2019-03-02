@@ -9,44 +9,48 @@ declare(strict_types=1);
 
 namespace corbomite\migrations\actions;
 
-use LogicException;
+use corbomite\migrations\PhpFunctions;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class CreateSampleConfig
 {
-    private $migrationsSrcDir;
     private $output;
+    private $appBasePath;
+    private $migrationsSrcDir;
+    private $phpFunctions;
 
     public function __construct(
+        string $appBasePath,
+        OutputInterface $output,
         string $migrationsSrcDir,
-        OutputInterface $output
+        PhpFunctions $phpFunctions
     ) {
-        $this->migrationsSrcDir = $migrationsSrcDir;
         $this->output = $output;
+        $this->appBasePath = $appBasePath;
+        $this->migrationsSrcDir = $migrationsSrcDir;
+        $this->phpFunctions = $phpFunctions;
     }
 
     public function __invoke()
     {
-        if (! defined('APP_BASE_PATH')) {
-            throw new LogicException('APP_BASE_PATH must be defined');
-        }
-
-        if (file_exists(APP_BASE_PATH . '/phinx.php')) {
+        if ($this->phpFunctions->fileExists(
+            $this->appBasePath . '/phinx.php'
+        )) {
             $this->output->writeln(
-                '<fg=red>phinx.php config file already exists. Please ' .
-                'remove or rename that file before generating new sample file </>'
+                '<fg=red>phinx.php config file already exists. Please remove ' .
+                'or rename that file before generating new sample file </>'
             );
 
             return;
         }
 
-        copy(
+        $this->phpFunctions->copy(
             $this->migrationsSrcDir . '/phinx.php.example',
-            APP_BASE_PATH . '/phinx.php'
+            $this->appBasePath . '/phinx.php'
         );
 
         $this->output->writeln(
-            '<fg=green>phinx.php config file has been placed in APP_BASE_PATH. ' .
+            '<fg=green>phinx.php config file has been placed in '. $this->appBasePath . ' '.
             'Look over the values there and edit as needed</>'
         );
     }

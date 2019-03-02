@@ -7,7 +7,9 @@ declare(strict_types=1);
  * @license Apache-2.0
  */
 
+use corbomite\migrations\actions\SeedRunAction;
 use corbomite\migrations\actions\MigrateUpAction;
+use corbomite\migrations\actions\CreateSeedAction;
 use corbomite\migrations\actions\MigrateDownAction;
 use corbomite\migrations\actions\CreateSampleConfig;
 use corbomite\migrations\actions\MigrateStatusAction;
@@ -36,6 +38,19 @@ return [
             'down' => [
                 'description' => 'Rolls back previous migration or to specified target',
                 'class' => MigrateDownAction::class,
+            ],
+        ],
+    ],
+    'seed' => [
+        'description' => 'Corbomite Seed Commands',
+        'commands' => [
+            'create' => [
+                'description' => 'Creates a seeder',
+                'class' => CreateSeedAction::class,
+            ],
+            'run' => [
+                'description' => 'Runs seeders (or specified seeder)',
+                'class' => SeedRunAction::class,
             ],
         ],
     ],
