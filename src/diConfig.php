@@ -14,6 +14,7 @@ use Psr\Container\ContainerInterface;
 use corbomite\migrations\PhpFunctions;
 use corbomite\cli\factories\ArrayInputFactory;
 use corbomite\cli\services\CliQuestionService;
+use corbomite\migrations\actions\SeedRunAction;
 use corbomite\migrations\actions\MigrateUpAction;
 use corbomite\migrations\actions\CreateSeedAction;
 use corbomite\migrations\services\PreFlightService;
@@ -100,6 +101,14 @@ return [
             new ArrayInputFactory(),
             new ConsoleOutput(),
             $di->get(CliQuestionService::class)
+        );
+    },
+    SeedRunAction::class => static function (ContainerInterface $di) {
+        return new SeedRunAction(
+            $di->get(PreFlightService::class),
+            new PhinxApplication(),
+            new ArrayInputFactory(),
+            new ConsoleOutput()
         );
     },
 ];
