@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace corbomite\migrations\services;
 
 use corbomite\cli\ExitStatement;
+use corbomite\migrations\PhpFunctions;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class PreFlightService
@@ -17,20 +18,25 @@ class PreFlightService
     private $appBasePath;
     private $consoleOutput;
     private $exitStatement;
+    private $phpFunctions;
 
     public function __construct(
         string $appBasePath,
         ExitStatement $exitStatement,
-        OutputInterface $consoleOutput
+        OutputInterface $consoleOutput,
+        PhpFunctions $phpFunctions
     ) {
         $this->appBasePath = $appBasePath;
         $this->consoleOutput = $consoleOutput;
         $this->exitStatement = $exitStatement;
+        $this->phpFunctions = $phpFunctions;
     }
 
     public function __invoke(): void
     {
-        if (file_exists($this->appBasePath . '/phinx.php')) {
+        if ($this->phpFunctions->fileExists(
+            $this->appBasePath . '/phinx.php'
+        )) {
             return;
         }
 
@@ -45,7 +51,7 @@ class PreFlightService
         );
 
         $this->consoleOutput->writeln(
-            '<fg=yellow>Please run php' . $entryPoint . ' migration/create-sample-config</>'
+            '<fg=yellow>Please run php ' . $entryPoint . ' migration/create-sample-config</>'
         );
 
         $this->exitStatement->exitWith(1);

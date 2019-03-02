@@ -11,6 +11,7 @@ use corbomite\cli\ExitStatement;
 use Composer\Autoload\ClassLoader;
 use Phinx\Console\PhinxApplication;
 use Psr\Container\ContainerInterface;
+use corbomite\migrations\PhpFunctions;
 use corbomite\cli\factories\ArrayInputFactory;
 use corbomite\cli\services\CliQuestionService;
 use corbomite\migrations\actions\MigrateUpAction;
@@ -35,7 +36,8 @@ return [
         return new PreFlightService(
             $appBasePath,
             new ExitStatement(),
-            new ConsoleOutput()
+            new ConsoleOutput(),
+            new PhpFunctions()
         );
     },
     CreateSampleConfig::class => static function () {
