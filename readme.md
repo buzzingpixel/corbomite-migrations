@@ -1,5 +1,7 @@
 # Corbomite Migrations
 
+<p><a href="https://travis-ci.org/buzzingpixel/corbomite-migrations"><img src="https://travis-ci.org/buzzingpixel/corbomite-migrations.svg?branch=master"></a></p>
+
 Part of BuzzingPixel's Corbomite project.
 
 Provides a light wrapper around [Phinx](https://phinx.org/) to make it available to Corbomite.
